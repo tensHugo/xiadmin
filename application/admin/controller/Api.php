@@ -59,7 +59,7 @@ use app\admin\model\Updeted;
 		return json($info);
 	}
 	
-  public function updeted_add($title,$context,$v,$status)
+  public function updeted_add($title,$context,$v,$status,$filename)
   {
   	$updeted = new Updeted;
 	  $updeted->title = $title;
@@ -67,6 +67,7 @@ use app\admin\model\Updeted;
 	  $updeted->v = $v;
 	  $updeted->uptime = date('y-m-d h:i:S');
 	  $updeted->status = $status;
+	  $updeted->filename = $filename;
 	  $updeted->save();
 	  $info = array(
 		  'code' => 1,
@@ -76,12 +77,13 @@ use app\admin\model\Updeted;
 	
   }
   
-  public function updeted_edit($id,$title,$context,$v,$status)
+  public function updeted_edit($id,$title,$context,$v,$status,$filename)
   {
   	$updeted = Updeted::get($id);
 	  $updeted->title = $title;
 	  $updeted->context = $context;
 	  $updeted->v = $v;
+	  $updeted->filename = $filename;
 	  $updeted->status = $status;
 	  $updeted->save();
 	  $info = array(
@@ -91,6 +93,25 @@ use app\admin\model\Updeted;
 		return json($info);
 	
   }
+	
+	
+	public function upload()
+	{
+		$return = array(
+		  'code' => 1,
+		  'msg'  => '上传成功'
+		);
+		$file = request()->file('file');
+		$info = $file->move( './uploads');
+		if($info){
+			$return['data'] = array('src'=>$info->getSaveName());
+		}else{
+			$return['code'] = 0;
+			$return['msg'] = $file->getError();
+		}
+		 return json($return);
+	}
+	
 	
 	
   }
