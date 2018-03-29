@@ -44,7 +44,7 @@
                  //alert(JSON.stringify(data.field))
                 $.post("./api/login",{username:$("input[name='username']").val(),pwss:$("input[name='password']").val()},function(data){
                 	if(data.code==1){
-                		location.href='admin'
+                		location.href='admin.do'
                 	}else{
                 		layer.msg(data.msg,function(){
                             //location.href='index.html'
