@@ -3,6 +3,7 @@ namespace app\admin\controller;
 use think\Controller;
 use app\admin\model\Admin;
 use app\admin\model\Config;
+use app\admin\model\Updeted;
 
   class Api extends Controller
   {
@@ -53,12 +54,43 @@ use app\admin\model\Config;
 		$config->save();
 		$info = array(
 		  'code' => 1,
-		  'msg'  => '退出成功'
+		  'msg'  => '保存成功'
 		);
 		return json($info);
 	}
 	
+  public function updeted_add($title,$context,$v,$status)
+  {
+  	$updeted = new Updeted;
+	  $updeted->title = $title;
+	  $updeted->context = $context;
+	  $updeted->v = $v;
+	  $updeted->uptime = date('y-m-d h:i:S');
+	  $updeted->status = $status;
+	  $updeted->save();
+	  $info = array(
+		  'code' => 1,
+		  'msg'  => '添加成功'
+		);
+		return json($info);
+	
+  }
   
+  public function updeted_edit($id,$title,$context,$v,$status)
+  {
+  	$updeted = Updeted::get($id);
+	  $updeted->title = $title;
+	  $updeted->context = $context;
+	  $updeted->v = $v;
+	  $updeted->status = $status;
+	  $updeted->save();
+	  $info = array(
+		  'code' => 1,
+		  'msg'  => '保存成功'
+		);
+		return json($info);
+	
+  }
 	
 	
   }

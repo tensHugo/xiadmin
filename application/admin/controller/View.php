@@ -4,6 +4,7 @@ use think\Controller;
 use app\admin\model\User;
 use app\admin\model\Userip;
 use app\admin\model\Config;
+use app\admin\model\Updeted;
 
 class View extends Controller
 {
@@ -20,7 +21,7 @@ class View extends Controller
 			$this->assign('name', $_SESSION['name']);
             return $this->fetch('/index');
         }else{
-        	$this->success('您还未登录，自动跳转到登录页面','../login');
+        	$this->success('您还未登录，自动跳转到登录页面','../login.do');
         }
 	}
 	
@@ -78,6 +79,38 @@ class View extends Controller
 	return $this->fetch('/sys-edit');
   }
   
+  public function updeted_list()
+  {
+  	$list = Updeted::paginate(10);
+	$page = $list->render();
+	$count = $list->total();
+	$this->assign('list', $list);
+	$this->assign('page', $page);
+    $this->assign('count', $count);
+	return $this->fetch('/updeted-list');
+  }
+  
+  public function updeted_add()
+  {
+  	
+	return $this->fetch('/updeted-add');
+  }
+  
+  public function updeted_edit($id)
+  {
+  	$updeted = Updeted::get($id);
+	$selected = "";
+	$selected1 = "";
+	if($updeted->status == 1){
+		$selected = "selected='selected'";
+	}else{
+		$selected1 = "selected='selected'";
+	}
+	$this->assign('selected',$selected);
+	$this->assign('selected1',$selected1);
+	$this->assign('updeted',$updeted);
+	return $this->fetch('/updeted-edit');
+  }
   
 	
 }
