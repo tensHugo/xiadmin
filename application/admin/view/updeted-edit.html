@@ -53,6 +53,19 @@
                   autocomplete="off" class="layui-input" value="{$updeted.v}">
               </div>
           </div>
+           <div class="layui-form-item">
+              <label for="L_pass" class="layui-form-label">
+                  <span class="x-red">*</span>文件
+              </label>
+              <div class="layui-input-inline">
+              	  <input type="text" name="filename" id="filename" disabled="disabled" required="" lay-verify="v"
+                  autocomplete="off" class="layui-input" value="{$updeted.filename}" />
+                  <button type="button" class="layui-btn" id="upload" name="file">
+                    <i class="layui-icon">&#xe67c;</i>重新上传
+                  </button>
+                  
+              </div>
+          </div>
           <div class="layui-form-item">
               <label for="L_pass" class="layui-form-label">
                   <span class="x-red">*</span>状态
@@ -89,6 +102,7 @@
             	title:$("input[name='title']").val(),
             	context:$("textarea[name='context']").val(),
             	v:$("input[name='v']").val(),
+            	filename:$("input[name='filename']").val(),
             	status:$("select[name='status']").val()
             	},function(data){
                 	if(data.code==1){
@@ -111,6 +125,23 @@
             return false;
           });
           
+          layui.use('upload', function(){
+        var upload = layui.upload;
+   
+        //执行实例
+        var uploadInst = upload.render({
+          elem: '#upload' //绑定元素
+          ,url: '../api/upload'//上传接口
+          ,accept: 'file'
+          ,done: function(res){
+            //上传完毕回调
+            $("#filename").val(res.data.src);
+        }       
+        ,error: function(){
+           //请求异常回调
+            }
+          });
+        });
           
         });
     </script>
