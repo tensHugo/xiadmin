@@ -4,6 +4,7 @@ use think\Controller;
 use app\admin\model\Admin;
 use app\admin\model\Config;
 use app\admin\model\Updeted;
+use app\admin\model\Imgs;
 
   class Api extends Controller
   {
@@ -112,6 +113,37 @@ use app\admin\model\Updeted;
 		 return json($return);
 	}
 	
+	public function img_add($title,$des,$sex,$src)
+	{
+		$imgs = new Imgs;
+		$imgs->title = $title;
+		$imgs->des = $des;
+		$imgs->sex = $sex;
+		$imgs->src = $src;
+		$imgs->uptime = date('y-m-d h:i:S');
+		$imgs->save();
+		 $info = array(
+		  'code' => 1,
+		  'msg'  => '添加成功'
+		);
+		return json($info);
+	}
+	
+	public function img_edit($id,$title,$des,$sex,$src)
+	{
+		$imgs = Imgs::get($id);
+		$imgs->title = $title;
+		$imgs->des = $des;
+		$imgs->sex = $sex;
+		$imgs->src = $src;
+		$imgs->uptime = date('y-m-d h:i:S');
+		$imgs->save();
+		 $info = array(
+		  'code' => 1,
+		  'msg'  => '保存成功'
+		);
+		return json($info);
+	}
 	
 	
   }

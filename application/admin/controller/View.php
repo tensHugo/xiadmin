@@ -5,6 +5,7 @@ use app\admin\model\User;
 use app\admin\model\Userip;
 use app\admin\model\Config;
 use app\admin\model\Updeted;
+use app\admin\model\Imgs;
 
 class View extends Controller
 {
@@ -21,7 +22,7 @@ class View extends Controller
 			$this->assign('name', $_SESSION['name']);
             return $this->fetch('/index');
         }else{
-        	$this->success('您还未登录，自动跳转到登录页面','../login.do');
+        	$this->success('您还未登录，自动跳转到登录页面','../login');
         }
 	}
 	
@@ -112,5 +113,29 @@ class View extends Controller
 	return $this->fetch('/updeted-edit');
   }
   
+  public function imgs_list()
+  {
+  	$list = Imgs::paginate(10);
+	$page = $list->render();
+	$count = $list->total();
+	$this->assign('list', $list);
+	$this->assign('page', $page);
+    $this->assign('count', $count);
+	return $this->fetch('/imgs-list');
+  }
+  
+  public function imgs_add()
+  {
+  	
+	return $this->fetch('/imgs-add');
+  }
+  
+  public function imgs_edit($id)
+  {
+  	$imgs = Imgs::get($id);
+	$this->assign('imgs',$imgs);
+	return $this->fetch('/imgs-edit');
+	
+  }
 	
 }
