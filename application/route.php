@@ -29,6 +29,9 @@ return [
      '/admin/updeted-list' => ['admin/View/updeted_list',['method' => 'get']],
      '/admin/updeted-add' => ['admin/View/updeted_add',['method' => 'get']],
      '/admin/updeted-edit' => ['admin/View/updeted_edit',['method' => 'get']],
+     '/admin/imgs-list' => ['admin/View/imgs_list',['method' => 'get']],
+     '/admin/imgs-add' => ['admin/View/imgs_add',['method' => 'get']],
+     '/admin/imgs-edit' => ['admin/View/imgs_edit',['method' => 'get']],
 	 
 	 //api请求
 	 '/api/login' => ['admin/Api/login',['method' => 'post']],
@@ -37,5 +40,7 @@ return [
 	 '/api/updeted-add'=> ['admin/Api/updeted_add',['method' => 'post']],
 	 '/api/updeted-edit'=> ['admin/Api/updeted_edit',['method' => 'post']],
 	 '/api/upload'=> ['admin/Api/upload',['method' => 'post']],
+	 '/api/img-add'=> ['admin/Api/img_add',['method' => 'post']],
+	 '/api/img-edit'=> ['admin/Api/img_edit',['method' => 'post']],
 
 ];
