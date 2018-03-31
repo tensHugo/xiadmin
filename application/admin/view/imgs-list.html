@@ -36,11 +36,21 @@
         <form class="layui-form layui-col-md12 x-so">
           <input class="layui-input" placeholder="开始日" name="start" id="start">
           <input class="layui-input" placeholder="截止日" name="end" id="end">
-          <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
+          <div class="layui-input-inline">
+            <select name="contrller">
+              <option value="">性别</option>
+              <option value="0">男</option>
+              <option value="1">女</option>
+              <option value="2">其他</option>
+            </select>
+          </div>
+          <input type="text" name="title"  placeholder="请输入标题" autocomplete="off" class="layui-input">
           <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
         </form>
       </div>
       <xblock>
+        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+        <button class="layui-btn" onclick="x_admin_show('添加图片','../admin/imgs-add',700,400)"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据：{$count} 条</span>
       </xblock>
       <table class="layui-table">
@@ -50,24 +60,31 @@
               <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </th>
             <th>ID</th>
-            <th>用户名</th>
-            <th>IP</th>
-            <th>点击时间</th>
-            <th>操作</th></tr>
+            <th>标题</th>
+            <th>描述</th>
+            <th>性别</th>
+            <th>更新时间</th>
+            <th >操作</th>
+            </tr>
         </thead>
         <tbody>
-        	{volist name='list' id='userip'}
+        	{volist name='list' id='imgs'}
           <tr>
             <td>
               <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
             </td>
-            <td>{$userip.id}</td>
-            <td>{$userip.username}</td>
-            <td>{$userip.ip}</td>
-            <td>{$userip.time}</td>
+            <td>{$imgs.id}</td>
+            <td>{$imgs.title}</td>
+            <td>{$imgs.des}</td>
+            {switch $imgs.sex}
+               {case 1}<td>男</td>{/case}
+               {case 2}<td>女</td>{/case}
+               {case 3}<td>其他</td>{/case}
+            {/switch}
+            <td>{$imgs.uptime}</td>
             <td class="td-manage">
-              <a title="编辑"  onclick="x_admin_show('编辑','member-edit.html',600,400)" href="javascript:;">
-                <i class="layui-icon">&#xe642;</i>
+              <a title="查看"  onclick="x_admin_show('编辑','../admin/imgs-edit?id={$imgs.id}',700,400)" href="javascript:;">
+                <i class="layui-icon">&#xe63c;</i>
               </a>
               <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
                 <i class="layui-icon">&#xe640;</i>

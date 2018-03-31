@@ -113,7 +113,7 @@
                       parent.layer.close(index);
                 		});
                 	}else{
-                		layer.alert("添加失败", {icon: 5},function () {
+                		layer.alert(data.msg, {icon: 5},function () {
                 			 // 获得frame索引
                       var index = parent.layer.getFrameIndex(window.name);
                        //关闭当前frame
