@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-03-29 01:55:37
+Date: 2018-04-01 00:14:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -49,7 +49,51 @@ CREATE TABLE `config` (
 -- ----------------------------
 -- Records of config
 -- ----------------------------
-INSERT INTO `config` VALUES ('1', '1099221484', '这里是系统公告', '后台管理系统');
+INSERT INTO `config` VALUES ('1', '1099221484', '这里是系统公告这里是系统公告这里是系统公', '后台管理系统');
+
+-- ----------------------------
+-- Table structure for imgs
+-- ----------------------------
+DROP TABLE IF EXISTS `imgs`;
+CREATE TABLE `imgs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userid` int(11) DEFAULT '1',
+  `title` varchar(255) DEFAULT NULL COMMENT '标题',
+  `des` varchar(255) DEFAULT NULL COMMENT '图片描述',
+  `sex` int(11) DEFAULT '3' COMMENT '1男 2女 3其他',
+  `src` varchar(255) DEFAULT NULL COMMENT '图片路径',
+  `uptime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of imgs
+-- ----------------------------
+INSERT INTO `imgs` VALUES ('1', '1', '测试', '这是描述', '3', '/sss', '2018-03-31 12:45:09');
+INSERT INTO `imgs` VALUES ('2', '1', '测试2', '描述', '1', 'ss', '2018-03-31 16:38:04');
+INSERT INTO `imgs` VALUES ('3', '1', '测试', '测试而测试', '2', '../uploads/20180331\\4244d3bcacfdfe2dab0ba88aba539277.jpg', '2018-03-31 11:48:00');
+
+-- ----------------------------
+-- Table structure for updated
+-- ----------------------------
+DROP TABLE IF EXISTS `updated`;
+CREATE TABLE `updated` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL COMMENT '标题',
+  `context` varchar(1024) DEFAULT '' COMMENT '更新内容',
+  `v` varchar(255) DEFAULT NULL COMMENT '版本号',
+  `uptime` datetime DEFAULT NULL COMMENT '发布时间',
+  `status` int(11) DEFAULT NULL COMMENT '0：关闭更新  1：开启更新',
+  `num` int(11) DEFAULT '0' COMMENT '更新次数',
+  `filename` varchar(10240) DEFAULT NULL COMMENT '文件地址',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of updated
+-- ----------------------------
+INSERT INTO `updated` VALUES ('14', '订单', '的', '的', '2018-03-30 01:37:00', '1', '0', '20180330\\87f06f395a2c066d8a8e6095c96f9fe0.png');
+INSERT INTO `updated` VALUES ('15', '文件测试', '文件测试', '2.011', '2018-03-30 01:40:00', '1', '0', '20180330\\4817099b2374cfec086bb34acfe35fa1.png');
 
 -- ----------------------------
 -- Table structure for user
