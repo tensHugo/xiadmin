@@ -25,6 +25,8 @@ return [
      '/admin/admin-list' => ['admin/View/user_list',['method' => 'get']],
      '/admin/share-list' => ['admin/View/share_list',['method' => 'get']],
      '/admin/sreach-user' => ['admin/View/sreach_user',['method' => 'get']],
+     '/admin/sreach-share' => ['admin/View/sreach_share',['method' => 'get']],
+     '/admin/sreach-imgs' => ['admin/View/sreach_imgs',['method' => 'get']],
      '/admin/sys-edit' => ['admin/View/sys_edit',['method' => 'get']],
      '/admin/updeted-list' => ['admin/View/updeted_list',['method' => 'get']],
      '/admin/updeted-add' => ['admin/View/updeted_add',['method' => 'get']],
